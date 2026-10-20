@@ -4,6 +4,12 @@
 
 整个项目使用原生 HTML、CSS 和 JavaScript 构建，不需要后端、数据库或联网接口。词库、字体和页面资源均随站点一同分发，打开浏览器即可使用。
 
+## 在线访问
+
+- 总入口：<https://pxyzy99.github.io/ciyu/>
+- 四级版：<https://pxyzy99.github.io/ciyu/cet4-mobile/>
+- 六级版：<https://pxyzy99.github.io/ciyu/cet6-mobile/>
+
 ## 两个版本
 
 | 版本 | 词条数量 | 入口 |
@@ -38,13 +44,7 @@ python -m http.server 8000
 
 ## GitHub Pages
 
-仓库根目录已经包含总入口 `index.html`。在 GitHub 仓库的 **Settings → Pages** 中选择从 `main` 分支根目录发布即可。
-
-发布后的地址通常为：
-
-```text
-https://<GitHub 用户名>.github.io/<仓库名>/
-```
+仓库根目录包含总入口 `index.html`，并已通过 GitHub Pages 从 `main` 分支根目录发布。
 
 ## 目录结构
 
