@@ -1,0 +1,1597 @@
+/* 词屿 · 手机版
+   PC 版保持原样；这里是一套手机优先的独立布局。 */
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  font-size: 16px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 520px;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  margin: 0 auto;
+}
+
+.sidebar {
+  display: none !important;
+}
+
+.main-wrap {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.main-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+.topbar {
+  flex: 0 0 auto;
+}
+
+.main-wrap {
+  width: 100%;
+}
+
+/* 顶部栏 */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: calc(10px + env(safe-area-inset-top)) 16px 8px;
+  background: linear-gradient(180deg, var(--bg) 76%, rgba(244, 240, 230, 0));
+  backdrop-filter: blur(14px);
+}
+
+[data-theme="dark"] .topbar {
+  background: linear-gradient(180deg, var(--bg) 76%, rgba(20, 27, 23, 0));
+}
+
+.topbar-date {
+  min-width: 0;
+}
+
+.topbar-date .eyebrow {
+  display: none;
+}
+
+.topbar-date p {
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.mobile-brand {
+  display: inline;
+  margin-right: 8px;
+  font-family: var(--serif-cn);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+.topbar-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-trigger {
+  width: 42px;
+  height: 42px;
+  min-width: 0;
+  padding: 0;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.search-trigger span,
+.search-trigger kbd {
+  display: none;
+}
+
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+}
+
+.goal-pill {
+  display: none;
+}
+
+/* 主内容与底部导航 */
+
+.view {
+  flex: 0 0 auto;
+  padding: 4px clamp(14px, 4.4vw, 20px) 32px;
+}
+
+.view-inner {
+  max-width: 100%;
+}
+
+.mobile-nav {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  z-index: 60;
+  transform: none;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex: 0 0 auto;
+  width: 100%;
+  padding: 6px 10px calc(8px + env(safe-area-inset-bottom));
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: rgba(251, 248, 240, 0.96);
+  box-shadow: 0 -12px 30px rgba(28, 42, 36, 0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+[data-theme="dark"] .mobile-nav {
+  background: rgba(28, 37, 32, 0.94);
+}
+
+.mobile-nav::before {
+  display: none;
+}
+
+.mobile-nav a {
+  flex: 1;
+  width: auto;
+  height: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border-radius: 12px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--muted);
+  touch-action: manipulation;
+}
+
+.mobile-nav a.active {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.mobile-nav .icon {
+  width: 19px;
+  height: 19px;
+}
+
+.toast-root {
+  top: auto;
+  bottom: calc(76px + env(safe-area-inset-bottom));
+}
+
+.toast {
+  max-width: 280px;
+  padding: 9px 15px;
+  font-size: 10.5px;
+  text-align: center;
+}
+
+/* 首页 */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  padding: 8px 0 24px;
+}
+
+.hero-copy {
+  max-width: 100%;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 11.2vw, 46px);
+  line-height: 1.16;
+  letter-spacing: -0.055em;
+}
+
+.hero-lede {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.hero-actions .btn {
+  width: 100%;
+  height: 48px;
+  padding: 0 10px;
+  font-size: 12px;
+  touch-action: manipulation;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  margin-top: 14px;
+  font-size: 10.5px;
+}
+
+.hero-art {
+  min-height: 292px;
+  margin-top: 6px;
+  width: 100%;
+}
+
+.hero-blob {
+  width: 300px;
+  height: 300px;
+}
+
+.card-stack {
+  width: min(100%, 340px);
+}
+
+.deck-card {
+  padding: 20px 22px 18px;
+}
+
+.deck-word {
+  font-size: clamp(34px, 10vw, 44px);
+}
+
+.deck-word.long {
+  font-size: clamp(24px, 7vw, 32px);
+}
+
+.deck-phon {
+  font-size: 12px;
+}
+
+.deck-meaning {
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+.deck-actions span {
+  font-size: 10px;
+}
+
+.hero-stamp {
+  right: 0;
+  bottom: 0;
+  width: 64px;
+  height: 64px;
+  font-size: 8px;
+}
+
+/* 首页概览 */
+
+.stat-strip {
+  grid-template-columns: 1fr 1fr;
+}
+
+.stat-cell {
+  padding: 16px 13px;
+}
+
+.stat-cell:nth-child(2) {
+  border-right: 0;
+}
+
+.stat-cell:nth-child(1),
+.stat-cell:nth-child(2) {
+  border-bottom: 1px solid var(--line);
+}
+
+.stat-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+.stat-number {
+  font-size: 28px;
+}
+
+.stat-number small {
+  font-size: 10px;
+}
+
+.stat-note {
+  margin-top: 5px;
+  font-size: 10.5px;
+  line-height: 1.5;
+}
+
+.dashboard-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.panel {
+  padding: 18px;
+  border-radius: 18px;
+}
+
+.panel-head {
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.panel-title {
+  font-size: 14px;
+}
+
+.panel-link {
+  font-size: 10.5px;
+}
+
+.progress-layout {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px;
+}
+
+.ring-wrap {
+  align-self: center;
+}
+
+.ring-text strong {
+  font-size: 32px;
+}
+
+.legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 14px;
+  width: 100%;
+}
+
+.legend-row {
+  font-size: 11px;
+}
+
+.legend-row b {
+  font-size: 13px;
+}
+
+.progress-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 10px;
+}
+
+.goal-switch button {
+  min-width: 34px;
+  height: 30px;
+  font-size: 10.5px;
+}
+
+.custom-goal input {
+  height: 36px;
+  font-size: 14px;
+}
+
+.plan-number {
+  font-size: 46px;
+}
+
+.plan-track {
+  height: 8px;
+}
+
+.plan-split {
+  gap: 10px;
+}
+
+.plan-split span {
+  font-size: 10px;
+}
+
+.plan-split b {
+  font-size: 20px;
+}
+
+.mode-label {
+  font-size: 10.5px;
+}
+
+.select-wrap select {
+  height: 38px;
+  font-size: 11.5px;
+}
+
+.plan-cta {
+  height: 50px;
+  border-radius: 12px;
+  font-size: 12.5px;
+  touch-action: manipulation;
+}
+
+.mistake-row {
+  padding: 13px 0;
+}
+
+.mistake-word {
+  font-size: 17px;
+}
+
+.mistake-meaning {
+  font-size: 11px;
+}
+
+.status-pill {
+  font-size: 10px;
+}
+
+.empty-mini {
+  padding: 24px 10px;
+  font-size: 11.5px;
+}
+
+.site-foot {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 26px;
+  font-size: 10px;
+}
+
+/* 学习数据 */
+
+.page-head h1 {
+  font-size: clamp(34px, 9.6vw, 42px);
+}
+
+.page-head p {
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.stats-grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.stat-card {
+  padding: 16px 14px;
+  border-radius: 14px;
+}
+
+.stat-card span {
+  font-size: 9px;
+}
+
+.stat-card b {
+  font-size: 30px;
+}
+
+.stat-card i {
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.stats-main {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.donut-layout {
+  gap: 18px;
+}
+
+.donut {
+  width: 132px;
+  height: 132px;
+}
+
+.donut-center b {
+  font-size: 26px;
+}
+
+.dist-legend {
+  gap: 8px;
+}
+
+.dist-row {
+  font-size: 11px;
+}
+
+.format-row {
+  grid-template-columns: 66px minmax(0, 1fr) 34px;
+  gap: 8px;
+  font-size: 10.5px;
+}
+
+.format-name {
+  font-size: 10.5px;
+}
+
+.format-note {
+  font-size: 10px;
+}
+
+.hard-row b {
+  font-size: 16px;
+}
+
+/* 词库 */
+
+.library-head h1 {
+  font-size: clamp(34px, 9.6vw, 42px);
+}
+
+.library-head p {
+  font-size: 12.5px;
+  line-height: 1.75;
+}
+
+.search-field input {
+  height: 44px;
+  font-size: 16px;
+}
+
+.filter-chip {
+  height: 34px;
+  padding: 0 12px;
+  font-size: 10.5px;
+}
+
+.library-count {
+  font-size: 10px;
+}
+
+.word-row {
+  padding: 13px 12px;
+}
+
+.row-word b {
+  font-size: 17px;
+}
+
+.row-word span {
+  font-size: 10px;
+}
+
+/* 易错本 */
+
+.review-hero {
+  padding: 22px;
+  border-radius: 18px;
+}
+
+.review-hero h2 {
+  font-size: 27px;
+}
+
+.review-hero p {
+  font-size: 12.5px;
+  line-height: 1.8;
+}
+
+/* 背词页 */
+
+.study-shell {
+  max-width: 100%;
+  padding-top: 0;
+}
+
+.study-head {
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.study-back {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+}
+
+.session-pill {
+  padding: 8px 12px;
+  font-size: 10.5px;
+}
+
+.study-count {
+  font-size: 14px;
+}
+
+.flash-card {
+  min-height: 0;
+  padding: 24px 20px 20px;
+  border-radius: 20px;
+}
+
+.flash-word {
+  font-size: clamp(38px, 12vw, 50px);
+}
+
+.flash-word.long {
+  font-size: clamp(28px, 8.6vw, 36px);
+}
+
+.flash-word.xlong {
+  font-size: clamp(24px, 7.2vw, 30px);
+}
+
+.flash-phon {
+  font-size: 13px;
+}
+
+.rating-row {
+  gap: 8px;
+}
+
+.rate-btn {
+  height: 54px;
+  border-radius: 12px;
+  font-size: 12px;
+  touch-action: manipulation;
+}
+
+.quiz-card {
+  min-height: 0;
+  padding: 20px 16px 18px;
+  border-radius: 20px;
+}
+
+.quiz-word {
+  font-size: clamp(38px, 12vw, 48px);
+}
+
+.quiz-word.long {
+  font-size: clamp(28px, 8.6vw, 36px);
+}
+
+.quiz-word.xlong {
+  font-size: clamp(24px, 7.2vw, 30px);
+}
+
+.quiz-phon {
+  font-size: 13px;
+}
+
+.quiz-cn {
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.quiz-instruction {
+  font-size: 10.5px;
+}
+
+.option-grid {
+  grid-template-columns: 1fr;
+  gap: 9px;
+}
+
+.option {
+  min-height: 58px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  touch-action: manipulation;
+}
+
+.option-key {
+  width: 28px;
+  height: 28px;
+  font-size: 12px;
+}
+
+.option-text {
+  display: block;
+  overflow: visible;
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: initial;
+  font-size: 13.5px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.quiz-foot-note {
+  font-size: 10px;
+}
+
+.study-foot {
+  display: none;
+}
+
+.summary-card {
+  padding: 28px 20px 24px;
+  border-radius: 20px;
+}
+
+.summary-card h2 {
+  font-size: 28px;
+}
+
+.summary-actions {
+  flex-direction: column;
+}
+
+/* 词条弹层：手机端做成底部面板 */
+
+.modal-overlay {
+  align-items: flex-end;
+  padding: 0;
+  overscroll-behavior: contain;
+}
+
+.word-modal {
+  width: 100%;
+  max-width: 520px;
+  max-height: 90dvh;
+  padding: 24px 20px calc(20px + env(safe-area-inset-bottom));
+  border-radius: 24px 24px 0 0;
+  overscroll-behavior: contain;
+  animation: sheetIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes sheetIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-close {
+  width: 40px;
+  height: 40px;
+  top: 14px;
+  right: 14px;
+}
+
+.modal-word {
+  font-size: 38px;
+}
+
+.modal-word.long {
+  font-size: 31px;
+}
+
+.modal-word.xlong {
+  font-size: 25px;
+}
+
+.modal-meaning {
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.modal-def {
+  font-size: 12px;
+}
+
+.modal-actions {
+  flex-direction: column;
+}
+
+.modal-actions .btn {
+  height: 50px;
+  font-size: 12px;
+}
+
+/* 搜索面板 */
+
+.palette-overlay {
+  align-items: flex-start;
+  padding: calc(6vh + env(safe-area-inset-top)) 10px 10px;
+}
+
+.palette {
+  max-height: 78dvh;
+  border-radius: 20px;
+  overscroll-behavior: contain;
+}
+
+.palette-input {
+  padding: 14px 16px;
+}
+
+.palette-input input {
+  font-size: 16px;
+}
+
+.palette-input kbd,
+.palette-foot {
+  display: none;
+}
+
+.palette-results {
+  padding: 7px 7px calc(10px + env(safe-area-inset-bottom));
+}
+
+.palette-item {
+  padding: 12px;
+}
+
+.palette-item .pi-word {
+  font-size: 17px;
+}
+
+.palette-item .pi-meaning {
+  font-size: 10.5px;
+}
+
+/* 触屏设备不保留悬停位移 */
+
+@media (hover: none) {
+  .panel:hover {
+    transform: none;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .stat-card:hover,
+  .option:hover:not(:disabled) {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+@media (max-height: 760px) {
+  .hero-art {
+    display: none;
+  }
+
+  .hero {
+    padding-bottom: 18px;
+  }
+
+  .hero h1 {
+    font-size: clamp(34px, 10.5vw, 40px);
+  }
+
+  .hero-lede {
+    margin-top: 10px;
+    font-size: 13.5px;
+  }
+
+  .hero-actions {
+    margin-top: 14px;
+  }
+
+  .view {
+    padding-bottom: 22px;
+  }
+
+  .mobile-nav {
+    padding: 4px 8px calc(6px + env(safe-area-inset-bottom));
+  }
+
+  .mobile-nav a {
+    height: 46px;
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 521px) {
+  .app {
+    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+  }
+}
+
+/* 学习页：全屏、紧凑，一屏放下题目和四个选项 */
+
+body[data-route="study"] .topbar,
+body[data-route="study"] .mobile-nav {
+  display: none !important;
+}
+
+body[data-route="study"] .view {
+  padding: calc(10px + env(safe-area-inset-top)) 14px 14px;
+}
+
+.study-shell {
+  padding-top: 0;
+}
+
+.study-head {
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.study-back {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+}
+
+.session-pill {
+  gap: 6px;
+  padding: 6px 9px;
+  font-size: 9.5px;
+}
+
+.study-count {
+  font-size: 12.5px;
+}
+
+.quiz-card {
+  padding: 14px 14px 12px;
+  border-radius: 18px;
+  min-height: 0;
+}
+
+.quiz-top {
+  gap: 8px;
+}
+
+.quiz-prompt {
+  padding: 10px 0;
+}
+
+.quiz-word {
+  font-size: clamp(32px, 9.5vw, 40px);
+}
+
+.quiz-word.long {
+  font-size: clamp(26px, 7.4vw, 32px);
+}
+
+.quiz-word.xlong {
+  font-size: clamp(22px, 6.4vw, 28px);
+}
+
+.quiz-phon {
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+.quiz-instruction {
+  margin-top: 7px;
+  font-size: 9.5px;
+}
+
+.option-grid {
+  gap: 7px;
+  margin-top: 0;
+}
+
+.option {
+  min-height: 46px;
+  padding: 8px 10px;
+  border-radius: 12px;
+}
+
+.option-key {
+  width: 24px;
+  height: 24px;
+  font-size: 11px;
+}
+
+.option-text {
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.quiz-foot-note {
+  margin-top: 10px;
+  font-size: 9px;
+}
+
+.flash-card {
+  min-height: 0;
+  padding: 18px 16px 16px;
+  border-radius: 18px;
+}
+
+.flash-word {
+  font-size: clamp(34px, 10.5vw, 44px);
+}
+
+.flash-word.long {
+  font-size: clamp(26px, 8vw, 34px);
+}
+
+.flash-word.xlong {
+  font-size: clamp(22px, 6.6vw, 28px);
+}
+
+.flash-phon {
+  font-size: 12px;
+}
+
+.rating-row {
+  gap: 6px;
+}
+
+.rate-btn {
+  height: 46px;
+  font-size: 11px;
+}
+
+/* 整体字号再收紧一点 */
+
+body {
+  font-size: 15.5px;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 10.4vw, 42px);
+}
+
+.hero-lede {
+  font-size: 13px;
+}
+
+.hero-actions .btn {
+  height: 46px;
+  font-size: 11.5px;
+}
+
+.hero-meta {
+  font-size: 10px;
+}
+
+.stat-number {
+  font-size: 26px;
+}
+
+.stat-note {
+  font-size: 10px;
+}
+
+.panel-title {
+  font-size: 13.5px;
+}
+
+.panel-link {
+  font-size: 10px;
+}
+
+.plan-number {
+  font-size: 42px;
+}
+
+.plan-cta {
+  height: 48px;
+  font-size: 12px;
+}
+
+.stats-grid .stat-card b {
+  font-size: 28px;
+}
+
+.stats-grid .stat-card i {
+  font-size: 9.5px;
+}
+
+.page-head h1 {
+  font-size: clamp(32px, 9vw, 38px);
+}
+
+.page-head p {
+  font-size: 12.5px;
+}
+
+.dist-row {
+  font-size: 10.5px;
+}
+
+.format-row,
+.format-name {
+  font-size: 10px;
+}
+
+.word-row b {
+  font-size: 16px;
+}
+
+.review-hero h2 {
+  font-size: 25px;
+}
+
+.modal-word {
+  font-size: 35px;
+}
+
+.modal-meaning {
+  font-size: 13.5px;
+}
+
+.modal-actions .btn {
+  height: 46px;
+  font-size: 11.5px;
+}
+
+.mobile-nav a {
+  font-size: 10px;
+}
+
+.mobile-nav .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.toast {
+  font-size: 10px;
+}
+
+/* 首页：先开始学习，再查看学习进度 */
+
+.dashboard-grid .panel {
+  order: 3;
+}
+
+.dashboard-grid .panel:nth-child(1) {
+  order: 2;
+}
+
+.dashboard-grid .panel:nth-child(2) {
+  order: 1;
+}
+
+.dashboard-grid .panel:nth-child(3) {
+  order: 3;
+}
+
+.dashboard-grid .panel:nth-child(4) {
+  order: 4;
+}
+
+/* 首页 / 词库 / 易错本 / 学习数据：UI 与字号再收紧一档 */
+
+body:not([data-route="study"]) .topbar {
+  gap: 6px;
+  padding: calc(8px + env(safe-area-inset-top)) 13px 6px;
+}
+
+body:not([data-route="study"]) .mobile-brand {
+  margin-right: 6px;
+  font-size: 15px;
+}
+
+body:not([data-route="study"]) .topbar-date p {
+  font-size: 11.5px;
+}
+
+body:not([data-route="study"]) .search-trigger,
+body:not([data-route="study"]) .icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+}
+
+body:not([data-route="study"]) .view {
+  padding: 2px clamp(12px, 4vw, 17px) 24px;
+}
+
+body:not([data-route="study"]) .mobile-nav {
+  padding: 4px 8px calc(6px + env(safe-area-inset-bottom));
+}
+
+body:not([data-route="study"]) .mobile-nav a {
+  height: 46px;
+  gap: 3px;
+  font-size: 9.5px;
+}
+
+body:not([data-route="study"]) .mobile-nav .icon {
+  width: 17px;
+  height: 17px;
+}
+
+body:not([data-route="study"]) .panel {
+  padding: 15px;
+  border-radius: 16px;
+}
+
+body:not([data-route="study"]) .panel-head {
+  gap: 8px;
+  margin-bottom: 13px;
+}
+
+body:not([data-route="study"]) .panel-title {
+  gap: 7px;
+  font-size: 12.5px;
+}
+
+body:not([data-route="study"]) .panel-link {
+  font-size: 9.5px;
+}
+
+body:not([data-route="study"]) .mistake-row {
+  gap: 9px;
+  padding: 11px 0;
+}
+
+body:not([data-route="study"]) .mistake-word {
+  font-size: 16px;
+}
+
+body:not([data-route="study"]) .mistake-meaning {
+  font-size: 10px;
+}
+
+body:not([data-route="study"]) .status-pill {
+  gap: 4px;
+  padding: 2px 7px;
+  font-size: 8.5px;
+}
+
+body:not([data-route="study"]) .empty-mini {
+  padding: 20px 8px;
+  font-size: 10.5px;
+}
+
+body:not([data-route="study"]) .site-foot {
+  margin-top: 20px;
+  font-size: 9px;
+}
+
+/* 首页 */
+
+body[data-route="home"] .hero {
+  gap: 14px;
+  padding: 4px 0 18px;
+}
+
+body[data-route="home"] .hero h1 {
+  font-size: clamp(29px, 9.4vw, 38px);
+  line-height: 1.14;
+}
+
+body[data-route="home"] .hero-lede {
+  margin-top: 9px;
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+
+body[data-route="home"] .hero-actions {
+  gap: 8px;
+  margin-top: 14px;
+}
+
+body[data-route="home"] .hero-actions .btn {
+  height: 42px;
+  font-size: 11px;
+}
+
+body[data-route="home"] .hero-meta {
+  margin-top: 11px;
+  font-size: 9.5px;
+}
+
+body[data-route="home"] .hero-art {
+  min-height: 262px;
+  margin-top: 0;
+}
+
+body[data-route="home"] .hero-blob {
+  width: 270px;
+  height: 270px;
+}
+
+body[data-route="home"] .card-stack {
+  width: min(100%, 310px);
+}
+
+body[data-route="home"] .deck-card {
+  padding: 17px 19px 15px;
+}
+
+body[data-route="home"] .deck-word {
+  font-size: clamp(31px, 9.2vw, 40px);
+}
+
+body[data-route="home"] .deck-word.long {
+  font-size: clamp(22px, 6.6vw, 29px);
+}
+
+body[data-route="home"] .deck-phon {
+  font-size: 11px;
+}
+
+body[data-route="home"] .deck-meaning {
+  font-size: 11.5px;
+}
+
+body[data-route="home"] .deck-actions span {
+  font-size: 9px;
+}
+
+body[data-route="home"] .stat-cell {
+  padding: 13px 12px;
+}
+
+body[data-route="home"] .stat-label {
+  font-size: 9px;
+}
+
+body[data-route="home"] .stat-number {
+  font-size: 24px;
+}
+
+body[data-route="home"] .stat-note {
+  font-size: 9.5px;
+}
+
+body[data-route="home"] .dashboard-grid {
+  gap: 12px;
+}
+
+body[data-route="home"] .plan-number {
+  font-size: 38px;
+}
+
+body[data-route="home"] .plan-cta {
+  height: 44px;
+  font-size: 11.5px;
+}
+
+body[data-route="home"] .select-wrap select {
+  height: 34px;
+  font-size: 10.5px;
+}
+
+body[data-route="home"] .goal-switch button {
+  min-width: 30px;
+  height: 27px;
+  font-size: 9.5px;
+}
+
+body[data-route="home"] .custom-goal input {
+  height: 32px;
+  font-size: 13px;
+}
+
+/* 词库 */
+
+body[data-route="library"] .library-head {
+  padding: 22px 0 16px;
+}
+
+body[data-route="library"] .library-head h1 {
+  margin-top: 9px;
+  font-size: clamp(30px, 8.6vw, 36px);
+}
+
+body[data-route="library"] .library-head p {
+  margin-top: 6px;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+body[data-route="library"] .search-box {
+  height: 42px;
+  border-radius: 11px;
+}
+
+body[data-route="library"] .search-box > .icon {
+  margin-left: 12px;
+}
+
+body[data-route="library"] .search-box input {
+  padding: 0 10px;
+  font-size: 16px;
+}
+
+body[data-route="library"] .toolbar-row {
+  gap: 6px;
+  margin-top: 9px;
+}
+
+body[data-route="library"] .filter-chip {
+  height: 29px;
+  padding: 0 10px;
+  font-size: 9.5px;
+}
+
+body[data-route="library"] .library-count {
+  margin: 14px 0 8px;
+  font-size: 9px;
+}
+
+body[data-route="library"] .word-row {
+  grid-template-columns: 26px minmax(0, 1fr) 62px 16px;
+  gap: 7px;
+  padding: 10px 10px;
+}
+
+body[data-route="library"] .row-index {
+  font-size: 9px;
+}
+
+body[data-route="library"] .row-word b {
+  font-size: 15px;
+}
+
+body[data-route="library"] .row-word span {
+  margin-top: 1px;
+  font-size: 9px;
+}
+
+body[data-route="library"] .row-chevron .icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* 易错本 */
+
+body[data-route="review"] .review-hero {
+  gap: 14px;
+  padding: 18px;
+  border-radius: 18px;
+}
+
+body[data-route="review"] .review-hero h2 {
+  margin-top: 9px;
+  font-size: 23px;
+}
+
+body[data-route="review"] .review-hero p {
+  margin-top: 6px;
+  font-size: 10.5px;
+  line-height: 1.65;
+}
+
+body[data-route="review"] .review-hero .btn {
+  margin-top: 14px;
+  height: 40px;
+  font-size: 10.5px;
+}
+
+body[data-route="review"] .review-section {
+  margin-top: 18px;
+}
+
+body[data-route="review"] .review-tabs {
+  gap: 5px;
+  margin-bottom: 9px;
+}
+
+body[data-route="review"] .tab-btn {
+  padding: 6px 9px;
+  font-size: 9.5px;
+}
+
+body[data-route="review"] .word-list {
+  border-radius: 16px;
+}
+
+body[data-route="review"] .word-row {
+  padding: 11px 10px;
+}
+
+body[data-route="review"] .row-word b {
+  font-size: 15.5px;
+}
+
+/* 学习数据 */
+
+body[data-route="stats"] .page-head h1 {
+  font-size: clamp(30px, 8.6vw, 36px);
+}
+
+body[data-route="stats"] .page-head p {
+  margin-top: 7px;
+  font-size: 11.5px;
+  line-height: 1.7;
+}
+
+body[data-route="stats"] .stats-grid {
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+body[data-route="stats"] .stat-card {
+  padding: 13px 12px;
+  border-radius: 13px;
+}
+
+body[data-route="stats"] .stat-card span {
+  font-size: 8.5px;
+}
+
+body[data-route="stats"] .stat-card b {
+  margin-top: 6px;
+  font-size: 26px;
+}
+
+body[data-route="stats"] .stat-card i {
+  margin-top: 5px;
+  font-size: 9px;
+}
+
+body[data-route="stats"] .stats-main {
+  gap: 12px;
+}
+
+body[data-route="stats"] .donut-layout {
+  gap: 14px;
+}
+
+body[data-route="stats"] .donut {
+  width: 116px;
+  height: 116px;
+}
+
+body[data-route="stats"] .donut::after {
+  inset: 13px;
+}
+
+body[data-route="stats"] .donut-center b {
+  font-size: 23px;
+}
+
+body[data-route="stats"] .dist-legend {
+  gap: 6px;
+}
+
+body[data-route="stats"] .dist-row {
+  font-size: 9.5px;
+}
+
+body[data-route="stats"] .format-list {
+  gap: 10px;
+}
+
+body[data-route="stats"] .format-row {
+  grid-template-columns: 60px minmax(0, 1fr) 30px;
+  gap: 7px;
+  font-size: 9.5px;
+}
+
+body[data-route="stats"] .format-name {
+  font-size: 9.5px;
+}
+
+body[data-route="stats"] .format-track {
+  height: 5px;
+}
+
+body[data-route="stats"] .format-note {
+  margin-top: 12px;
+  padding-top: 9px;
+  font-size: 9px;
+}
+
+body[data-route="stats"] .hard-row {
+  gap: 8px;
+  padding: 7px 0;
+}
+
+body[data-route="stats"] .hard-row b {
+  font-size: 15px;
+}

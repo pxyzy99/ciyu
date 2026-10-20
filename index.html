@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1c2a24">
+  <meta name="description" content="词屿：安静、轻量的大学英语四六级手机背词网站。">
+  <title>词屿 · 四六级手机背词</title>
+  <style>
+    :root {
+      --ink: #1c2a24;
+      --muted: #69736c;
+      --paper: #f4f0e6;
+      --paper-deep: #e9e2d2;
+      --line: rgba(28, 42, 36, 0.14);
+      --accent: #98683d;
+      --accent-soft: rgba(152, 104, 61, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--paper);
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(152, 104, 61, 0.12), transparent 27rem),
+        radial-gradient(circle at 88% 88%, rgba(46, 92, 73, 0.13), transparent 31rem),
+        var(--paper);
+      font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      content: "";
+      opacity: 0.28;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E");
+    }
+
+    .page {
+      width: min(100% - 36px, 920px);
+      margin: 0 auto;
+      padding: clamp(42px, 9vw, 96px) 0 34px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 22px;
+      color: var(--accent);
+      font-family: "Manrope", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 34px;
+      height: 1px;
+      content: "";
+      background: currentColor;
+    }
+
+    h1 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(44px, 10vw, 82px);
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: -0.06em;
+    }
+
+    .lead {
+      max-width: 590px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: clamp(16px, 4vw, 19px);
+      line-height: 1.9;
+    }
+
+    .versions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: clamp(36px, 8vw, 64px);
+    }
+
+    .version {
+      position: relative;
+      min-height: 245px;
+      padding: 28px;
+      overflow: hidden;
+      color: var(--ink);
+      text-decoration: none;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255, 252, 244, 0.64);
+      box-shadow: 0 22px 60px rgba(41, 51, 45, 0.06);
+      transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+    }
+
+    .version::after {
+      position: absolute;
+      right: -34px;
+      bottom: -58px;
+      width: 170px;
+      height: 170px;
+      content: "词";
+      color: rgba(28, 42, 36, 0.045);
+      font-size: 150px;
+      line-height: 1;
+      transform: rotate(-8deg);
+    }
+
+    .version:hover,
+    .version:focus-visible {
+      z-index: 1;
+      border-color: rgba(152, 104, 61, 0.45);
+      box-shadow: 0 26px 70px rgba(41, 51, 45, 0.12);
+      transform: translateY(-5px);
+      outline: none;
+    }
+
+    .level {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 10px;
+      color: var(--accent);
+      font-family: "Manrope", sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      border-radius: 999px;
+      background: var(--accent-soft);
+    }
+
+    .version h2 {
+      margin: 24px 0 8px;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.035em;
+    }
+
+    .version p {
+      max-width: 260px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .enter {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 28px;
+      color: var(--accent);
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .enter span {
+      transition: transform 220ms ease;
+    }
+
+    .version:hover .enter span {
+      transform: translateX(5px);
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding-top: 28px;
+      margin-top: 44px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+      border-top: 1px solid var(--line);
+    }
+
+    footer a {
+      color: inherit;
+      text-underline-offset: 3px;
+    }
+
+    @media (max-width: 680px) {
+      .page {
+        width: min(100% - 28px, 520px);
+        padding-top: 44px;
+      }
+
+      h1 {
+        font-size: clamp(42px, 15vw, 64px);
+      }
+
+      .versions {
+        grid-template-columns: 1fr;
+      }
+
+      .version {
+        min-height: 220px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <p class="eyebrow">Ciyu · Vocabulary</p>
+    <h1>把单词，<br>放进属于它的岛屿。</h1>
+    <p class="lead">
+      一个安静、轻量的手机背词空间。选一个版本，慢慢认识每一个词。
+      所有学习记录只保存在你的浏览器里。
+    </p>
+
+    <section class="versions" aria-label="选择词库版本">
+      <a class="version" href="cet4-mobile/index.html">
+        <span class="level">CET-4 · 1398 WORDS</span>
+        <h2>四级词汇</h2>
+        <p>从今天的三十个词开始，给每一次想起留下一点回声。</p>
+        <span class="enter">进入四级岛 <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="version" href="cet6-mobile/index.html">
+        <span class="level">CET-6 · 2697 WORDS</span>
+        <h2>六级词汇</h2>
+        <p>更辽阔的一片词海，按自己的节奏，一页一页走过去。</p>
+        <span class="enter">进入六级岛 <span aria-hidden="true">→</span></span>
+      </a>
+    </section>
+
+    <footer>
+      <span>词屿 · 原生 HTML / CSS / JavaScript</span>
+      <span><a href="README.md">项目说明</a> · <a href="LICENSE">MIT License</a></span>
+    </footer>
+  </main>
+</body>
+</html>
